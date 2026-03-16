@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Se usa process.env para que Render tome el token de forma segura
+// El Access Token se configurará en las variables de entorno de Render
 const client = new MercadoPagoConfig({ 
     accessToken: process.env.MP_ACCESS_TOKEN 
 });
@@ -18,9 +18,10 @@ app.post("/create_preference", async (req, res) => {
             body: {
                 items: req.body.items,
                 back_urls: {
-                    success: "https://elixir360.netlify.app",
-                    failure: "https://elixir360.netlify.app",
-                    pending: "https://elixir360.netlify.app"
+                    // Actualizado a tu nueva dirección de Netlify
+                    success: "https://chrono365.netlify.app",
+                    failure: "https://chrono365.netlify.app",
+                    pending: "https://chrono365.netlify.app"
                 },
                 auto_return: "approved",
             },
@@ -33,4 +34,4 @@ app.post("/create_preference", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));
+app.listen(PORT, () => console.log(`Servidor de CHRONOS corriendo en puerto ${PORT}`));
